@@ -24,9 +24,15 @@
             color: var(--rice-brown);
         }
 
-        /* Navbar */
+        /* Navbar & Logo Spacing Adjustments */
         .navbar {
             background-color: var(--rice-dark);
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
+        .navbar-brand {
+            padding-top: 0;
+            padding-bottom: 0;
         }
         .navbar-brand, .nav-link {
             color: var(--rice-light) !important;
@@ -84,11 +90,10 @@
 </head>
 <body>
 
-    <!-- Navigation with GitHub Hosted Logo -->
+    <!-- Navigation with Minimized Logo Spacing -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <!-- Logo height increased to 80px (two times bigger) -->
+            <a class="navbar-brand py-0" href="#">
                 <img src="rch_logo2.jpg" alt="RCH Rice Trading Logo" height="80" class="d-inline-block align-text-top">
             </a>
             <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
