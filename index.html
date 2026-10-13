@@ -173,9 +173,9 @@
                 <!-- Product 2 -->
                 <div class="col-md-4">
                     <div class="card h-100">
-                        <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Regular Milled Rice">
+                        <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Special Sinandomeng">
                         <div class="card-body">
-                            <h5 class="card-title fw-bold">Special Sinandomog</h5>
+                            <h5 class="card-title fw-bold">Special Sinandomeng</h5>
                             <p class="card-text text-muted">Known for its distinct natural aroma and fluffiness when cooked. A favorite local classic.</p>
                             <p class="fw-bold text-dark mb-0">₱48.00 / kilo</p>
                         </div>
@@ -200,48 +200,141 @@
     <section id="order">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-8">
+                <div class="col-lg-10">
                     <div class="card p-4 p-md-5 shadow-sm">
                         <div class="text-center mb-4">
                             <h2 class="fw-bold">Quick Order Form</h2>
                             <p class="text-muted">Fill out the details below to place your order with us.</p>
                         </div>
-                        <form>
+                        <form id="orderForm" onsubmit="submitOrder(event)">
                             <div class="row mb-3">
                                 <div class="col-md-6 mb-3 mb-md-0">
-                                    <label class="form-label">Full Name</label>
-                                    <input type="text" class="form-control" placeholder="Enter your name" required>
+                                    <label class="form-label">Customer Name</label>
+                                    <input type="text" id="orderName" class="form-control" placeholder="Enter your name" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Contact Number</label>
-                                    <input type="tel" class="form-control" placeholder="e.g., 09123456789" required>
+                                    <input type="tel" id="orderContact" class="form-control" placeholder="e.g., 09123456789" required>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Delivery Address</label>
-                                <textarea class="form-control" rows="2" placeholder="Complete delivery address" required></textarea>
+                                <textarea id="orderAddress" class="form-control" rows="2" placeholder="Complete delivery address" required></textarea>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6 mb-3 mb-md-0">
-                                    <label class="form-label">Select Product</label>
-                                    <select class="form-select" required>
-                                        <option value="" selected disabled>Choose rice variety...</option>
-                                        <option value="jasmine">Premium Jasmine Rice</option>
-                                        <option value="sinandomog">Special Sinandomog</option>
-                                        <option value="brown">Healthy Brown Rice</option>
-                                    </select>
+
+                            <!-- Order Table (Dynamic Rows) -->
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <label class="form-label fw-bold mb-0">Order Items</label>
+                                    <button type="button" class="btn btn-sm btn-outline-dark" onclick="addRow()">+ Add more item...</button>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Quantity (Kilos / Sacks)</label>
-                                    <input type="text" class="form-control" placeholder="e.g., 25 kilos or 1 sack" required>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered align-middle" id="orderTable">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th style="width: 45%;">Product</th>
+                                                <th style="width: 25%;">Kilos</th>
+                                                <th style="width: 25%;">Quantity</th>
+                                                <th style="width: 5%;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="orderTableBody">
+                                            <!-- Row 1 -->
+                                            <tr>
+                                                <td>
+                                                    <select class="form-select form-select-sm product-select" required>
+                                                        <option value="" selected disabled>Select rice variety...</option>
+                                                        <option value="Premium Jasmine Rice">Premium Jasmine Rice</option>
+                                                        <option value="Special Sinandomeng">Special Sinandomeng</option>
+                                                        <option value="Healthy Brown Rice">Healthy Brown Rice</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-select form-select-sm kilos-select" required>
+                                                        <option value="" selected disabled>Select size...</option>
+                                                        <option value="Per Kilo">Per Kilo</option>
+                                                        <option value="5-Kilo Sack">5-Kilo Sack</option>
+                                                        <option value="10-Kilo Sack">10-Kilo Sack</option>
+                                                        <option value="25-Kilo Sack">25-Kilo Sack</option>
+                                                        <option value="50-Kilo Sack">50-Kilo Sack</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty" required></td>
+                                                <td class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
+                                            </tr>
+                                            <!-- Row 2 -->
+                                            <tr>
+                                                <td>
+                                                    <select class="form-select form-select-sm product-select">
+                                                        <option value="" selected disabled>Select rice variety...</option>
+                                                        <option value="Premium Jasmine Rice">Premium Jasmine Rice</option>
+                                                        <option value="Special Sinandomeng">Special Sinandomeng</option>
+                                                        <option value="Healthy Brown Rice">Healthy Brown Rice</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-select form-select-sm kilos-select">
+                                                        <option value="" selected disabled>Select size...</option>
+                                                        <option value="Per Kilo">Per Kilo</option>
+                                                        <option value="5-Kilo Sack">5-Kilo Sack</option>
+                                                        <option value="10-Kilo Sack">10-Kilo Sack</option>
+                                                        <option value="25-Kilo Sack">25-Kilo Sack</option>
+                                                        <option value="50-Kilo Sack">50-Kilo Sack</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
+                                                <td class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
+                                            </tr>
+                                            <!-- Row 3 -->
+                                            <tr>
+                                                <td>
+                                                    <select class="form-select form-select-sm product-select">
+                                                        <option value="" selected disabled>Select rice variety...</option>
+                                                        <option value="Premium Jasmine Rice">Premium Jasmine Rice</option>
+                                                        <option value="Special Sinandomeng">Special Sinandomeng</option>
+                                                        <option value="Healthy Brown Rice">Healthy Brown Rice</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-select form-select-sm kilos-select">
+                                                        <option value="" selected disabled>Select size...</option>
+                                                        <option value="Per Kilo">Per Kilo</option>
+                                                        <option value="5-Kilo Sack">5-Kilo Sack</option>
+                                                        <option value="10-Kilo Sack">10-Kilo Sack</option>
+                                                        <option value="25-Kilo Sack">25-Kilo Sack</option>
+                                                        <option value="50-Kilo Sack">50-Kilo Sack</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
+                                                <td class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- Note below the table -->
+                                <div class="form-text text-muted mt-2 fst-italic">
+                                    Note: A representative will call to confirm and calculate your total amount
                                 </div>
                             </div>
+
+                            <!-- Payment Option Field -->
+                            <div class="mb-3">
+                                <label class="form-label">Payment Option *</label>
+                                <select id="orderPayment" class="form-select" required>
+                                    <option value="" selected disabled>Select payment method...</option>
+                                    <option value="COD">COD</option>
+                                    <option value="GCash">GCash</option>
+                                    <option value="Maya">Maya</option>
+                                    <option value="Bank Transfer">Bank Transfer</option>
+                                </select>
+                            </div>
+
                             <div class="mb-4">
                                 <label class="form-label">Special Instructions (Optional)</label>
-                                <textarea class="form-control" rows="2" placeholder="Any delivery notes or preferred drop-off times"></textarea>
+                                <textarea id="orderInstructions" class="form-control" rows="2" placeholder="Any delivery notes or preferred drop-off times"></textarea>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-rice btn-lg w-100 py-3">Submit Order</button>
+                                <button type="submit" class="btn btn-rice btn-lg w-100 py-3">Submit Order Form</button>
                             </div>
                         </form>
                     </div>
@@ -254,9 +347,9 @@
     <section id="contact" class="bg-cream">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-6 text-center mb-5">
+                <div class="col-lg-7 text-center mb-5">
                     <h2 class="fw-bold">Get In Touch</h2>
-                    <p class="text-muted">Have inquiries regarding wholesale rates or bulk delivery? Send us a message!</p>
+                    <p class="text-muted">Have inquiries regarding wholesale rates, bulk delivery, or want to share feedback and suggestions? Send us a message!</p>
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -292,5 +385,93 @@
 
     <!-- Bootstrap 5 JS Bundle CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script to Add/Remove Rows and Handle Email Submission -->
+    <script>
+        function addRow() {
+            const tbody = document.getElementById('orderTableBody');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>
+                    <select class="form-select form-select-sm product-select">
+                        <option value="" selected disabled>Select rice variety...</option>
+                        <option value="Premium Jasmine Rice">Premium Jasmine Rice</option>
+                        <option value="Special Sinandomeng">Special Sinandomeng</option>
+                        <option value="Healthy Brown Rice">Healthy Brown Rice</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-select form-select-sm kilos-select">
+                        <option value="" selected disabled>Select size...</option>
+                        <option value="Per Kilo">Per Kilo</option>
+                        <option value="5-Kilo Sack">5-Kilo Sack</option>
+                        <option value="10-Kilo Sack">10-Kilo Sack</option>
+                        <option value="25-Kilo Sack">25-Kilo Sack</option>
+                        <option value="50-Kilo Sack">50-Kilo Sack</option>
+                    </select>
+                </td>
+                <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
+                <td class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
+            `;
+            tbody.appendChild(newRow);
+        }
+
+        function removeRow(button) {
+            const row = button.closest('tr');
+            const tbody = document.getElementById('orderTableBody');
+            if (tbody.rows.length > 1) {
+                row.remove();
+            } else {
+                alert("You must keep at least one row in the order form.");
+            }
+        }
+
+        function generateOrderId() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            for (let i = 0; i < 15; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        function submitOrder(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('orderName').value;
+            const contact = document.getElementById('orderContact').value;
+            const address = document.getElementById('orderAddress').value;
+            const payment = document.getElementById('orderPayment').value;
+            const instructions = document.getElementById('orderInstructions').value;
+            const orderId = generateOrderId();
+
+            let itemsList = "";
+            const rows = document.querySelectorAll('#orderTableBody tr');
+            rows.forEach((row, index) => {
+                const product = row.querySelector('.product-select').value;
+                const kilos = row.querySelector('.kilos-select').value;
+                const quantity = row.querySelector('.qty-input').value;
+
+                if (product) {
+                    itemsList += `Item ${index + 1}:\n- Product: ${product}\n- Kilos/Size: ${kilos || 'N/A'}\n- Quantity: ${quantity || 'N/A'}\n\n`;
+                }
+            });
+
+            const emailBody = `--- NEW ORDER DETAILS ---\n\n` +
+                              `Order ID: ${orderId}\n` +
+                              `Customer Name: ${name}\n` +
+                              `Contact Number: ${contact}\n` +
+                              `Delivery Address: ${address}\n` +
+                              `Payment Option: ${payment}\n\n` +
+                              `Order Items:\n${itemsList}` +
+                              `Special Instructions: ${instructions || 'None'}`;
+
+            const recipient = "janryan.hernandez@gmail.com";
+            const subject = `OrderID#: ${orderId}`;
+
+            const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            window.location.href = mailtoLink;
+        }
+    </script>
 </body>
 </html>
