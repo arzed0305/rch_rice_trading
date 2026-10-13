@@ -78,11 +78,12 @@
             position: relative;
             display: flex;
             align-items: center;
+            padding: 0 85px;
         }
 
         .product-scroll-container {
             display: flex;
-            justify-content: center; /* Centering the product items */
+            justify-content: flex-start;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
@@ -128,25 +129,42 @@
         }
 
         .carousel-btn-left {
-            left: -25px;
+            left: 10px;
         }
 
         .carousel-btn-right {
-            right: -25px;
+            right: 10px;
         }
 
         @media (max-width: 992px) {
+            .product-carousel-wrapper {
+                padding: 0 55px;
+            }
             .carousel-btn {
                 width: 38px;
                 height: 38px;
                 font-size: 1.2rem;
             }
             .carousel-btn-left {
-                left: -10px;
+                left: 5px;
             }
             .carousel-btn-right {
-                right: -10px;
+                right: 5px;
             }
+        }
+
+        /* Wrap text in table selects/options */
+        #orderTable select {
+            white-space: normal;
+            word-wrap: break-word;
+            height: auto;
+            min-height: calc(1.5em + 0.5rem + 2px);
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+        }
+        #orderTable select option {
+            white-space: normal;
+            word-wrap: break-word;
         }
 
         /* Sections */
@@ -202,6 +220,10 @@
     <!-- Home / Hero Section -->
     <header id="home" class="hero-section">
         <div class="container">
+            <!-- Last Updated Badge -->
+            <span class="badge bg-warning text-dark mb-3 px-3 py-2 fw-semibold rounded-pill">
+                <i class="bi bi-clock-history me-1"></i> Last Updated: October 14, 2026
+            </span>
             <h1 class="display-4 fw-bold mb-3">Pure Quality Grains and Feeds</h1>
             <p class="lead mb-4">Welcome to RCH Rice Trading. Your trusted wholesale and retail source for premium quality rice and feeds.</p>
             <a href="#order" class="btn btn-rice btn-lg px-4 me-2">Place an Order</a>
@@ -262,27 +284,39 @@
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="fw-bold">Our Products</h2>
-                <p class="text-muted">Explore our finest selection of grains and feeds available for retail and wholesale.</p>
+                <p class="text-muted mb-2">Explore our finest selection of grains and feeds available for retail and wholesale.</p>
+                <!-- Last Updated Notice on Products Section -->
+                <span class="badge bg-secondary text-light px-3 py-1 fw-normal rounded-pill">
+                    <i class="bi bi-clock-history me-1"></i> Last Updated: October 14, 2026
+                </span>
             </div>
 
             <!-- Tabs Navigation -->
-            <ul class="nav nav-pills justify-content-center mb-5" id="productTabs" role="tablist">
-                <li class="nav-item m-1" role="presentation">
+            <ul class="nav nav-pills justify-content-center mb-3" id="productTabs" role="tablist">
+                <!-- To HIDE/SHOW Rice Products Tab: Change display style (e.g., style="display: none;" or style="display: block;") -->
+                <li class="nav-item m-1" role="presentation" style="display: block;">
                     <button class="nav-link active px-4 py-2 rounded-pill" id="rice-tab" data-bs-toggle="pill" data-bs-target="#rice-content" type="button" role="tab" aria-controls="rice-content" aria-selected="true">Rice Products</button>
                 </li>
-                <li class="nav-item m-1" role="presentation">
+                <!-- To HIDE/SHOW Hog Feeds Products Tab: Change display style (e.g., style="display: none;" or style="display: block;") -->
+                <li class="nav-item m-1" role="presentation" style="display: block;">
                     <button class="nav-link px-4 py-2 rounded-pill" id="hog-tab" data-bs-toggle="pill" data-bs-target="#hog-content" type="button" role="tab" aria-controls="hog-content" aria-selected="false">Hog Feeds Products</button>
                 </li>
-                <li class="nav-item m-1" role="presentation">
+                <!-- To HIDE/SHOW Poultry Feeds Products Tab: Change display style (e.g., style="display: none;" or style="display: block;") -->
+                <li class="nav-item m-1" role="presentation" style="display: block;">
                     <button class="nav-link px-4 py-2 rounded-pill" id="poultry-tab" data-bs-toggle="pill" data-bs-target="#poultry-content" type="button" role="tab" aria-controls="poultry-content" aria-selected="false">Poultry Feeds Products</button>
                 </li>
             </ul>
+
+            <!-- Persistent Note Below Tabs -->
+            <div class="text-center mb-5">
+                <p class="text-muted small fst-italic mb-0">Prices may change depending on market costs.</p>
+            </div>
 
             <!-- Tabs Content -->
             <div class="tab-content" id="productTabsContent">
                 <!-- Rice Products Tab -->
                 <div class="tab-pane fade show active" id="rice-content" role="tabpanel" aria-labelledby="rice-tab">
-                    <div class="product-carousel-wrapper px-md-3">
+                    <div class="product-carousel-wrapper">
                         <button class="carousel-btn carousel-btn-left" onclick="scrollProducts('rice-container', -1)" aria-label="Scroll Left">
                             <i class="bi bi-chevron-left"></i>
                         </button>
@@ -294,7 +328,8 @@
                                     <div class="card-body">
                                         <h5 class="card-title fw-bold">Sinandomeng</h5>
                                         <p class="card-text text-muted">Soft, fragrant, and slightly sticky texture. Perfect for everyday family meals and special occasions.</p>
-                                        <p class="fw-bold text-dark mb-0">₱52.00 / kilo</p>
+                                        <p class="fw-bold text-dark mb-2">₱52.00 / kilo</p>
+                                        <span class="badge bg-light text-dark border px-2 py-1 fw-normal">Wholesale & Retail available</span>
                                     </div>
                                 </div>
                             </div>
@@ -305,7 +340,8 @@
                                     <div class="card-body">
                                         <h5 class="card-title fw-bold">Ganador</h5>
                                         <p class="card-text text-muted">Known for its distinct natural aroma and fluffiness when cooked. A favorite local classic.</p>
-                                        <p class="fw-bold text-dark mb-0">₱48.00 / kilo</p>
+                                        <p class="fw-bold text-dark mb-2">₱48.00 / kilo</p>
+                                        <span class="badge bg-light text-dark border px-2 py-1 fw-normal">Wholesale & Retail available</span>
                                     </div>
                                 </div>
                             </div>
@@ -316,7 +352,8 @@
                                     <div class="card-body">
                                         <h5 class="card-title fw-bold">Shirataki Rice</h5>
                                         <p class="card-text text-muted">Nutrient-dense, rich in fiber, and great for health-conscious individuals and clean eaters.</p>
-                                        <p class="fw-bold text-dark mb-0">₱60.00 / kilo</p>
+                                        <p class="fw-bold text-dark mb-2">₱60.00 / kilo</p>
+                                        <span class="badge bg-light text-dark border px-2 py-1 fw-normal">Wholesale & Retail available</span>
                                     </div>
                                 </div>
                             </div>
@@ -329,7 +366,7 @@
 
                 <!-- Hog Feeds Products Tab -->
                 <div class="tab-pane fade" id="hog-content" role="tabpanel" aria-labelledby="hog-tab">
-                    <div class="product-carousel-wrapper px-md-3">
+                    <div class="product-carousel-wrapper">
                         <button class="carousel-btn carousel-btn-left" onclick="scrollProducts('hog-container', -1)" aria-label="Scroll Left">
                             <i class="bi bi-chevron-left"></i>
                         </button>
@@ -337,22 +374,24 @@
                             <!-- Hog Feed Item 1 -->
                             <div class="product-card-wrapper">
                                 <div class="card h-100">
-                                    <img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Hog Starter Feeds">
+                                    <img src="h_product_01.jpg" class="card-img-top" alt="B-Meg Premium Starter Hog Pellet">
                                     <div class="card-body">
-                                        <h5 class="card-title fw-bold">Hog Starter Feeds</h5>
+                                        <h5 class="card-title fw-bold">B-Meg Premium Starter Hog Pellet</h5>
                                         <p class="card-text text-muted">Nutrient-rich feed blends tailored for healthy weight development and early livestock vitality.</p>
-                                        <p class="fw-bold text-dark mb-0">Wholesale & Retail available</p>
+                                        <p class="fw-bold text-dark mb-2">₱45.00 / kilo</p>
+                                        <span class="badge bg-light text-dark border px-2 py-1 fw-normal">Wholesale & Retail available</span>
                                     </div>
                                 </div>
                             </div>
                             <!-- Hog Feed Item 2 -->
                             <div class="product-card-wrapper">
                                 <div class="card h-100">
-                                    <img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Hog Finisher Feeds">
+                                    <img src="h_product_02.jpg" class="card-img-top" alt="Uno+ Premium Finisher Pellet">
                                     <div class="card-body">
-                                        <h5 class="card-title fw-bold">Hog Finisher Feeds</h5>
+                                        <h5 class="card-title fw-bold">Uno+ Premium Finisher Pellet</h5>
                                         <p class="card-text text-muted">Specialized high-protein formula designed to maximize growth and meat quality for market preparation.</p>
-                                        <p class="fw-bold text-dark mb-0">Wholesale & Retail available</p>
+                                        <p class="fw-bold text-dark mb-2">₱43.00 / kilo</p>
+                                        <span class="badge bg-light text-dark border px-2 py-1 fw-normal">Wholesale & Retail available</span>
                                     </div>
                                 </div>
                             </div>
@@ -365,7 +404,7 @@
 
                 <!-- Poultry Feeds Products Tab -->
                 <div class="tab-pane fade" id="poultry-content" role="tabpanel" aria-labelledby="poultry-tab">
-                    <div class="product-carousel-wrapper px-md-3">
+                    <div class="product-carousel-wrapper">
                         <button class="carousel-btn carousel-btn-left" onclick="scrollProducts('poultry-container', -1)" aria-label="Scroll Left">
                             <i class="bi bi-chevron-left"></i>
                         </button>
@@ -373,22 +412,24 @@
                             <!-- Poultry Feed Item 1 -->
                             <div class="product-card-wrapper">
                                 <div class="card h-100">
-                                    <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Poultry Feeds">
+                                    <img src="p_product_01.jpg" class="card-img-top" alt="Sarimanok Chick Starter">
                                     <div class="card-body">
-                                        <h5 class="card-title fw-bold">Premium Poultry Feeds</h5>
+                                        <h5 class="card-title fw-bold">Sarimanok Chick Starter</h5>
                                         <p class="card-text text-muted">High-quality formulated feeds designed for optimal growth, health, and egg production.</p>
-                                        <p class="fw-bold text-dark mb-0">Wholesale & Retail available</p>
+                                        <p class="fw-bold text-dark mb-2">₱46.00 / kilo</p>
+                                        <span class="badge bg-light text-dark border px-2 py-1 fw-normal">Wholesale & Retail available</span>
                                     </div>
                                 </div>
                             </div>
                             <!-- Poultry Feed Item 2 -->
                             <div class="product-card-wrapper">
                                 <div class="card h-100">
-                                    <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Chick Booster Feeds">
+                                    <img src="p_product_02.jpg" class="card-img-top" alt="MegaFarm Premium High Density Feeds">
                                     <div class="card-body">
-                                        <h5 class="card-title fw-bold">Chick Booster Feeds</h5>
+                                        <h5 class="card-title fw-bold">MegaFarm Premium High Density Feeds</h5>
                                         <p class="card-text text-muted">Essential nutrient-packed crumbles crafted for newborn chicks to ensure strong immunity and early development.</p>
-                                        <p class="fw-bold text-dark mb-0">Wholesale & Retail available</p>
+                                        <p class="fw-bold text-dark mb-2">₱44.00 / kilo</p>
+                                        <span class="badge bg-light text-dark border px-2 py-1 fw-normal">Wholesale & Retail available</span>
                                     </div>
                                 </div>
                             </div>
@@ -608,10 +649,18 @@
 
     <!-- Script to Add/Remove Rows, Dependent Product Options, Clear Forms, Carousel Scroll, and Handle Email Submissions -->
     <script>
+        // Always force page to start at the top/hero section on load
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.location.hash) {
+                history.replaceState(null, null, window.location.pathname + window.location.search);
+            }
+            window.scrollTo(0, 0);
+        });
+
         const productsByType = {
             "Rice Products": ["Sinandomeng", "Ganador", "Shirataki Rice"],
-            "Hog Feeds Products": ["Hog Starter Feeds", "Hog Finisher Feeds"],
-            "Poultry Feeds Products": ["Premium Poultry Feeds", "Chick Booster Feeds"]
+            "Hog Feeds Products": ["B-Meg Premium Starter Hog Pellet", "Uno+ Premium Finisher Pellet"],
+            "Poultry Feeds Products": ["Sarimanok Chick Starter", "MegaFarm Premium High Density Feeds"]
         };
 
         function updateProductOptions(typeSelect) {
