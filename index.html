@@ -153,20 +153,6 @@
             }
         }
 
-        /* Wrap text in table selects/options */
-        #orderTable select {
-            white-space: normal;
-            word-wrap: break-word;
-            height: auto;
-            min-height: calc(1.5em + 0.5rem + 2px);
-            padding-top: 0.25rem;
-            padding-bottom: 0.25rem;
-        }
-        #orderTable select option {
-            white-space: normal;
-            word-wrap: break-word;
-        }
-
         /* Sections */
         section {
             padding: 80px 0;
@@ -333,10 +319,10 @@
                             <h2 class="fw-bold">Quick Order Form</h2>
                             <p class="text-muted">Fill out the details below to place your order with us.</p>
                         </div>
-                        <form id="orderForm" onsubmit="submitOrder(event)">
+                        <form id="orderForm" onsubmit="previewOrder(event)">
                             <div class="row mb-3">
                                 <div class="col-md-6 mb-3 mb-md-0">
-                                    <label class="form-label">Customer Name</label>
+                                    <label class="form-label">Customer Name *</label>
                                     <input type="text" id="orderName" class="form-control" placeholder="Enter your name" required>
                                 </div>
                                 <div class="col-md-6">
@@ -346,7 +332,7 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Delivery Address</label>
+                                <label class="form-label">Delivery Address *</label>
                                 <textarea id="orderAddress" class="form-control" rows="2" placeholder="Complete delivery address" required></textarea>
                             </div>
 
@@ -360,8 +346,8 @@
                                     <table class="table table-bordered align-middle" id="orderTable">
                                         <thead class="table-light">
                                             <tr>
-                                                <th style="width: 30%;">Product Type</th>
-                                                <th style="width: 30%;">Product</th>
+                                                <th style="width: 25%;">Product Type</th>
+                                                <th style="width: 35%;">Product</th>
                                                 <th style="width: 20%;">Size</th>
                                                 <th style="width: 15%;">Quantity</th>
                                                 <th style="width: 5%;">Action</th>
@@ -370,7 +356,7 @@
                                         <tbody id="orderTableBody">
                                             <!-- Row 1 -->
                                             <tr>
-                                                <td>
+                                                <td style="width: 25%;">
                                                     <select class="form-select form-select-sm type-select" onchange="updateProductOptions(this)" required>
                                                         <option value="" selected disabled>Select type...</option>
                                                         <option value="Rice Products">Rice Products</option>
@@ -378,22 +364,22 @@
                                                         <option value="Poultry Feeds Products">Poultry Feeds Products</option>
                                                     </select>
                                                 </td>
-                                                <td>
+                                                <td style="width: 35%;">
                                                     <select class="form-select form-select-sm product-select" onchange="updateKilosOptions(this)" required>
                                                         <option value="" selected disabled>Select type first...</option>
                                                     </select>
                                                 </td>
-                                                <td>
+                                                <td style="width: 20%;">
                                                     <select class="form-select form-select-sm kilos-select" required>
                                                         <option value="" selected disabled>Select product first...</option>
                                                     </select>
                                                 </td>
-                                                <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty" required></td>
-                                                <td class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
+                                                <td style="width: 15%;"><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty" required></td>
+                                                <td style="width: 5%;" class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
                                             </tr>
                                             <!-- Row 2 -->
                                             <tr>
-                                                <td>
+                                                <td style="width: 25%;">
                                                     <select class="form-select form-select-sm type-select" onchange="updateProductOptions(this)">
                                                         <option value="" selected disabled>Select type...</option>
                                                         <option value="Rice Products">Rice Products</option>
@@ -401,22 +387,22 @@
                                                         <option value="Poultry Feeds Products">Poultry Feeds Products</option>
                                                     </select>
                                                 </td>
-                                                <td>
+                                                <td style="width: 35%;">
                                                     <select class="form-select form-select-sm product-select" onchange="updateKilosOptions(this)">
                                                         <option value="" selected disabled>Select type first...</option>
                                                     </select>
                                                 </td>
-                                                <td>
+                                                <td style="width: 20%;">
                                                     <select class="form-select form-select-sm kilos-select">
                                                         <option value="" selected disabled>Select product first...</option>
                                                     </select>
                                                 </td>
-                                                <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
-                                                <td class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
+                                                <td style="width: 15%;"><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
+                                                <td style="width: 5%;" class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
                                             </tr>
                                             <!-- Row 3 -->
                                             <tr>
-                                                <td>
+                                                <td style="width: 25%;">
                                                     <select class="form-select form-select-sm type-select" onchange="updateProductOptions(this)">
                                                         <option value="" selected disabled>Select type...</option>
                                                         <option value="Rice Products">Rice Products</option>
@@ -424,18 +410,18 @@
                                                         <option value="Poultry Feeds Products">Poultry Feeds Products</option>
                                                     </select>
                                                 </td>
-                                                <td>
+                                                <td style="width: 35%;">
                                                     <select class="form-select form-select-sm product-select" onchange="updateKilosOptions(this)">
                                                         <option value="" selected disabled>Select type first...</option>
                                                     </select>
                                                 </td>
-                                                <td>
+                                                <td style="width: 20%;">
                                                     <select class="form-select form-select-sm kilos-select">
                                                         <option value="" selected disabled>Select product first...</option>
                                                     </select>
                                                 </td>
-                                                <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
-                                                <td class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
+                                                <td style="width: 15%;"><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
+                                                <td style="width: 5%;" class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -472,6 +458,26 @@
             </div>
         </div>
     </section>
+
+    <!-- Order Summary Modal -->
+    <div class="modal fade" id="orderSummaryModal" tabindex="-1" aria-labelledby="orderSummaryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title fw-bold" id="orderSummaryModalLabel"><i class="bi bi-receipt me-2 text-warning"></i> Order Summary</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted small mb-3">Please review your order details before proceeding:</p>
+                    <div id="modalOrderSummaryContent" class="bg-light p-3 rounded border font-monospace small" style="white-space: pre-line;"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Edit Order</button>
+                    <button type="button" class="btn btn-rice px-4" onclick="confirmAndSubmitOrder()">Confirm & Send Email</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Contact Form Section -->
     <section id="contact" class="bg-cream">
@@ -736,7 +742,7 @@
             const tbody = document.getElementById('orderTableBody');
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
-                <td>
+                <td style="width: 25%;">
                     <select class="form-select form-select-sm type-select" onchange="updateProductOptions(this)">
                         <option value="" selected disabled>Select type...</option>
                         <option value="Rice Products">Rice Products</option>
@@ -744,18 +750,18 @@
                         <option value="Poultry Feeds Products">Poultry Feeds Products</option>
                     </select>
                 </td>
-                <td>
+                <td style="width: 35%;">
                     <select class="form-select form-select-sm product-select" onchange="updateKilosOptions(this)">
                         <option value="" selected disabled>Select type first...</option>
                     </select>
                 </td>
-                <td>
+                <td style="width: 20%;">
                     <select class="form-select form-select-sm kilos-select">
                         <option value="" selected disabled>Select product first...</option>
                     </select>
                 </td>
-                <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
-                <td class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
+                <td style="width: 15%;"><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
+                <td style="width: 5%;" class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
             `;
             tbody.appendChild(newRow);
         }
@@ -775,7 +781,7 @@
             const tbody = document.getElementById('orderTableBody');
             tbody.innerHTML = `
                 <tr>
-                    <td>
+                    <td style="width: 25%;">
                         <select class="form-select form-select-sm type-select" onchange="updateProductOptions(this)" required>
                             <option value="" selected disabled>Select type...</option>
                             <option value="Rice Products">Rice Products</option>
@@ -783,21 +789,21 @@
                             <option value="Poultry Feeds Products">Poultry Feeds Products</option>
                         </select>
                     </td>
-                    <td>
+                    <td style="width: 35%;">
                         <select class="form-select form-select-sm product-select" onchange="updateKilosOptions(this)" required>
                             <option value="" selected disabled>Select type first...</option>
                         </select>
                     </td>
-                    <td>
+                    <td style="width: 20%;">
                         <select class="form-select form-select-sm kilos-select" required>
                             <option value="" selected disabled>Select product first...</option>
                         </select>
                     </td>
-                    <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty" required></td>
-                    <td class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
+                    <td style="width: 15%;"><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty" required></td>
+                    <td style="width: 5%;" class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
                 </tr>
                 <tr>
-                    <td>
+                    <td style="width: 25%;">
                         <select class="form-select form-select-sm type-select" onchange="updateProductOptions(this)">
                             <option value="" selected disabled>Select type...</option>
                             <option value="Rice Products">Rice Products</option>
@@ -805,21 +811,21 @@
                             <option value="Poultry Feeds Products">Poultry Feeds Products</option>
                         </select>
                     </td>
-                    <td>
+                    <td style="width: 35%;">
                         <select class="form-select form-select-sm product-select" onchange="updateKilosOptions(this)">
                             <option value="" selected disabled>Select type first...</option>
                         </select>
                     </td>
-                    <td>
+                    <td style="width: 20%;">
                         <select class="form-select form-select-sm kilos-select">
                             <option value="" selected disabled>Select product first...</option>
                         </select>
                     </td>
-                    <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
-                    <td class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
+                    <td style="width: 15%;"><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
+                    <td style="width: 5%;" class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
                 </tr>
                 <tr>
-                    <td>
+                    <td style="width: 25%;">
                         <select class="form-select form-select-sm type-select" onchange="updateProductOptions(this)">
                             <option value="" selected disabled>Select type...</option>
                             <option value="Rice Products">Rice Products</option>
@@ -827,18 +833,18 @@
                             <option value="Poultry Feeds Products">Poultry Feeds Products</option>
                         </select>
                     </td>
-                    <td>
+                    <td style="width: 35%;">
                         <select class="form-select form-select-sm product-select" onchange="updateKilosOptions(this)">
                             <option value="" selected disabled>Select type first...</option>
                         </select>
                     </td>
-                    <td>
+                    <td style="width: 20%;">
                         <select class="form-select form-select-sm kilos-select">
                             <option value="" selected disabled>Select product first...</option>
                         </select>
                     </td>
-                    <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
-                    <td class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
+                    <td style="width: 15%;"><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
+                    <td style="width: 5%;" class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
                 </tr>
             `;
         }
@@ -856,7 +862,10 @@
             return result;
         }
 
-        function submitOrder(event) {
+        let pendingOrderData = null;
+        let activeOrderModal = null;
+
+        function previewOrder(event) {
             event.preventDefault();
 
             const name = document.getElementById('orderName').value;
@@ -867,6 +876,7 @@
             const orderId = generateRandomId(15);
 
             let itemsList = "";
+            let modalItemsText = "";
             const rows = document.querySelectorAll('#orderTableBody tr');
             rows.forEach((row, index) => {
                 const type = row.querySelector('.type-select').value;
@@ -876,6 +886,7 @@
 
                 if (product) {
                     itemsList += `Item ${index + 1}:\n- Type: ${type}\n- Product: ${product}\n- Size: ${size || 'N/A'}\n- Quantity: ${quantity || 'N/A'}\n\n`;
+                    modalItemsText += `• ${quantity || 1}x ${product} (${size || 'N/A'})\n`;
                 }
             });
 
@@ -890,9 +901,33 @@
 
             const recipient = "janryan.hernandez@gmail.com";
             const subject = `RCH OrderID#: ${orderId}`;
-
             const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-            window.location.href = mailtoLink;
+
+            pendingOrderData = mailtoLink;
+
+            const summaryHtml = `Order ID: ${orderId}
+Customer Name: ${name}
+Contact Number: ${contact}
+Delivery Address: ${address}
+Payment Option: ${payment}
+
+Items:
+${modalItemsText}
+Special Instructions: ${instructions || 'None'}`;
+
+            document.getElementById('modalOrderSummaryContent').textContent = summaryHtml;
+
+            activeOrderModal = new bootstrap.Modal(document.getElementById('orderSummaryModal'));
+            activeOrderModal.show();
+        }
+
+        function confirmAndSubmitOrder() {
+            if (activeOrderModal) {
+                activeOrderModal.hide();
+            }
+            if (pendingOrderData) {
+                window.location.href = pendingOrderData;
+            }
         }
 
         function submitContact(event) {
