@@ -362,7 +362,7 @@
                                             <tr>
                                                 <th style="width: 30%;">Product Type</th>
                                                 <th style="width: 30%;">Product</th>
-                                                <th style="width: 20%;">Kilos</th>
+                                                <th style="width: 20%;">Size</th>
                                                 <th style="width: 15%;">Quantity</th>
                                                 <th style="width: 5%;">Action</th>
                                             </tr>
@@ -871,11 +871,11 @@
             rows.forEach((row, index) => {
                 const type = row.querySelector('.type-select').value;
                 const product = row.querySelector('.product-select').value;
-                const kilos = row.querySelector('.kilos-select').value;
+                const size = row.querySelector('.kilos-select').value;
                 const quantity = row.querySelector('.qty-input').value;
 
                 if (product) {
-                    itemsList += `Item ${index + 1}:\n- Type: ${type}\n- Product: ${product}\n- Kilos/Size: ${kilos || 'N/A'}\n- Quantity: ${quantity || 'N/A'}\n\n`;
+                    itemsList += `Item ${index + 1}:\n- Type: ${type}\n- Product: ${product}\n- Size: ${size || 'N/A'}\n- Quantity: ${quantity || 'N/A'}\n\n`;
                 }
             });
 
