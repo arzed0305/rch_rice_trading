@@ -6,6 +6,8 @@
     <title>RCH Rice Trading | Quality Rice Wholesale & Retail</title>
     <!-- Bootstrap 5 CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
@@ -43,7 +45,7 @@
 
         /* Hero Section */
         .hero-section {
-            background: linear-gradient(rgba(44, 34, 30, 0.7), rgba(44, 34, 30, 0.7)), url('https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background: linear-gradient(rgba(44, 34, 30, 0.7), rgba(44, 34, 30, 0.7)), url('rch_cover_photo.jpg') no-repeat center center;
             background-size: cover;
             color: white;
             padding: 120px 0;
@@ -59,6 +61,91 @@
         .btn-rice:hover {
             background-color: #c99b45;
             color: var(--rice-dark);
+        }
+
+        /* Custom Tabs styling */
+        .nav-pills .nav-link.active {
+            background-color: var(--rice-dark);
+            color: var(--rice-light);
+        }
+        .nav-pills .nav-link {
+            color: var(--rice-brown);
+            font-weight: 600;
+        }
+
+        /* Horizontal Carousel Wrapper with Arrows */
+        .product-carousel-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-scroll-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            gap: 1.5rem;
+            padding-bottom: 1rem;
+            width: 100%;
+            scrollbar-width: none;
+        }
+
+        .product-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .product-card-wrapper {
+            flex: 0 0 300px;
+            scroll-snap-align: start;
+        }
+
+        /* Carousel Navigation Buttons */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--rice-dark);
+            color: var(--rice-gold);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .carousel-btn:hover {
+            background-color: var(--rice-brown);
+            color: #ffffff;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .carousel-btn-left {
+            left: -25px;
+        }
+
+        .carousel-btn-right {
+            right: -25px;
+        }
+
+        @media (max-width: 992px) {
+            .carousel-btn {
+                width: 38px;
+                height: 38px;
+                font-size: 1.2rem;
+            }
+            .carousel-btn-left {
+                left: -10px;
+            }
+            .carousel-btn-right {
+                right: -10px;
+            }
         }
 
         /* Sections */
@@ -114,8 +201,8 @@
     <!-- Home / Hero Section -->
     <header id="home" class="hero-section">
         <div class="container">
-            <h1 class="display-4 fw-bold mb-3">Pure Quality Grains, Straight from the Harvest</h1>
-            <p class="lead mb-4">Welcome to RCH Rice Trading. Your trusted source for premium quality wholesale and retail rice.</p>
+            <h1 class="display-4 fw-bold mb-3">Pure Quality Grains and Feeds</h1>
+            <p class="lead mb-4">Welcome to RCH Rice Trading. Your trusted wholesale and retail source for premium quality rice and feeds.</p>
             <a href="#order" class="btn btn-rice btn-lg px-4 me-2">Place an Order</a>
             <a href="#products" class="btn btn-outline-light btn-lg px-4">View Products</a>
         </div>
@@ -126,20 +213,38 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0">
-                    <img src="https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=800&q=80" alt="Rice field" class="img-fluid rounded shadow">
+                    <img src="rch_about_me.jpg" alt="RCH About Me" class="img-fluid rounded shadow">
                 </div>
                 <div class="col-lg-6">
-                    <h2 class="fw-bold mb-4">About RCH Rice Trading</h2>
-                    <p class="text-muted mb-3">Hi there! I am the founder behind RCH Rice Trading. Committed to providing households and local businesses with consistent, top-grade, and clean rice varieties.</p>
-                    <p class="text-muted mb-4">We source our grains directly from trusted farmers to ensure high quality, great aroma, and delicious taste in every single grain—all at honest, competitive prices.</p>
+                    <h2 class="fw-bold mb-1">About RCH Rice Trading</h2>
+                    <p class="text-muted fw-semibold small mb-3">EST July 2026</p>
+                    <p class="text-muted mb-3">Hi there! I am the founder behind RCH Rice Trading. Committed to providing households and local businesses with consistent, top-grade, and clean rice varieties, quality grains, and dependable feeds.</p>
+                    <p class="text-muted mb-4">We source our grains and feeds from trusted wholesale partners, putting every batch through strict quality checks to ensure high quality and great taste—all at honest, competitive prices.</p>
+                    
+                    <!-- Mission & Vision Boxes -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded h-100 bg-white shadow-sm">
+                                <h5 class="fw-bold text-dark mb-2"><i class="bi bi-bullseye text-warning me-1"></i> Our Mission</h5>
+                                <p class="small text-muted mb-0">To deliver top-quality grains, feeds, and trusted agricultural products from reliable wholesale partners to every household and business with honesty and reliability.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded h-100 bg-white shadow-sm">
+                                <h5 class="fw-bold text-dark mb-2"><i class="bi bi-eye text-warning me-1"></i> Our Vision</h5>
+                                <p class="small text-muted mb-0">To become the leading and most trusted provider of premium rice and quality feeds, known for exceptional service and community support.</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row text-center">
                         <div class="col-4">
                             <h3 class="fw-bold text-dark">100%</h3>
                             <p class="small text-muted">Pure Quality</p>
                         </div>
                         <div class="col-4">
-                            <h3 class="fw-bold text-dark">Direct</h3>
-                            <p class="small text-muted">Farmer Sourced</p>
+                            <h3 class="fw-bold text-dark">Verified</h3>
+                            <p class="small text-muted">Strictly Inspected</p>
                         </div>
                         <div class="col-4">
                             <h3 class="fw-bold text-dark">Trusted</h3>
@@ -151,45 +256,145 @@
         </div>
     </section>
 
-    <!-- Products Section -->
+    <!-- Products Section with Carousel Scroll -->
     <section id="products" class="bg-cream">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="fw-bold">Our Rice Products</h2>
-                <p class="text-muted">Explore our finest selection of grains available for retail and wholesale.</p>
+                <h2 class="fw-bold">Our Products</h2>
+                <p class="text-muted">Explore our finest selection of grains and feeds available for retail and wholesale.</p>
             </div>
-            <div class="row g-4">
-                <!-- Product 1 -->
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <img src="https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Premium Jasmine Rice">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Premium Jasmine Rice</h5>
-                            <p class="card-text text-muted">Soft, fragrant, and slightly sticky texture. Perfect for everyday family meals and special occasions.</p>
-                            <p class="fw-bold text-dark mb-0">₱52.00 / kilo</p>
+
+            <!-- Tabs Navigation -->
+            <ul class="nav nav-pills justify-content-center mb-5" id="productTabs" role="tablist">
+                <li class="nav-item m-1" role="presentation">
+                    <button class="nav-link active px-4 py-2 rounded-pill" id="rice-tab" data-bs-toggle="pill" data-bs-target="#rice-content" type="button" role="tab" aria-controls="rice-content" aria-selected="true">Rice Products</button>
+                </li>
+                <li class="nav-item m-1" role="presentation">
+                    <button class="nav-link px-4 py-2 rounded-pill" id="hog-tab" data-bs-toggle="pill" data-bs-target="#hog-content" type="button" role="tab" aria-controls="hog-content" aria-selected="false">Hog Feeds Products</button>
+                </li>
+                <li class="nav-item m-1" role="presentation">
+                    <button class="nav-link px-4 py-2 rounded-pill" id="poultry-tab" data-bs-toggle="pill" data-bs-target="#poultry-content" type="button" role="tab" aria-controls="poultry-content" aria-selected="false">Poultry Feeds Products</button>
+                </li>
+            </ul>
+
+            <!-- Tabs Content -->
+            <div class="tab-content" id="productTabsContent">
+                <!-- Rice Products Tab -->
+                <div class="tab-pane fade show active" id="rice-content" role="tabpanel" aria-labelledby="rice-tab">
+                    <div class="product-carousel-wrapper px-md-3">
+                        <button class="carousel-btn carousel-btn-left" onclick="scrollProducts('rice-container', -1)" aria-label="Scroll Left">
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+                        <div class="product-scroll-container pb-3 px-2" id="rice-container">
+                            <!-- Product 1 -->
+                            <div class="product-card-wrapper">
+                                <div class="card h-100">
+                                    <img src="r_product_01.jpg" class="card-img-top" alt="Sinandomeng">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold">Sinandomeng</h5>
+                                        <p class="card-text text-muted">Soft, fragrant, and slightly sticky texture. Perfect for everyday family meals and special occasions.</p>
+                                        <p class="fw-bold text-dark mb-0">₱52.00 / kilo</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product 2 -->
+                            <div class="product-card-wrapper">
+                                <div class="card h-100">
+                                    <img src="r_product_02.jpg" class="card-img-top" alt="Ganador">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold">Ganador</h5>
+                                        <p class="card-text text-muted">Known for its distinct natural aroma and fluffiness when cooked. A favorite local classic.</p>
+                                        <p class="fw-bold text-dark mb-0">₱48.00 / kilo</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product 3 -->
+                            <div class="product-card-wrapper">
+                                <div class="card h-100">
+                                    <img src="r_product_03.jpg" class="card-img-top" alt="Shirataki Rice">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold">Shirataki Rice</h5>
+                                        <p class="card-text text-muted">Nutrient-dense, rich in fiber, and great for health-conscious individuals and clean eaters.</p>
+                                        <p class="fw-bold text-dark mb-0">₱60.00 / kilo</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <button class="carousel-btn carousel-btn-right" onclick="scrollProducts('rice-container', 1)" aria-label="Scroll Right">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
-                <!-- Product 2 -->
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Special Sinandomeng">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Special Sinandomeng</h5>
-                            <p class="card-text text-muted">Known for its distinct natural aroma and fluffiness when cooked. A favorite local classic.</p>
-                            <p class="fw-bold text-dark mb-0">₱48.00 / kilo</p>
+
+                <!-- Hog Feeds Products Tab -->
+                <div class="tab-pane fade" id="hog-content" role="tabpanel" aria-labelledby="hog-tab">
+                    <div class="product-carousel-wrapper px-md-3">
+                        <button class="carousel-btn carousel-btn-left" onclick="scrollProducts('hog-container', -1)" aria-label="Scroll Left">
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+                        <div class="product-scroll-container pb-3 px-2" id="hog-container">
+                            <!-- Hog Feed Item 1 -->
+                            <div class="product-card-wrapper">
+                                <div class="card h-100">
+                                    <img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Hog Starter Feeds">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold">Hog Starter Feeds</h5>
+                                        <p class="card-text text-muted">Nutrient-rich feed blends tailored for healthy weight development and early livestock vitality.</p>
+                                        <p class="fw-bold text-dark mb-0">Wholesale & Retail available</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Hog Feed Item 2 -->
+                            <div class="product-card-wrapper">
+                                <div class="card h-100">
+                                    <img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Hog Finisher Feeds">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold">Hog Finisher Feeds</h5>
+                                        <p class="card-text text-muted">Specialized high-protein formula designed to maximize growth and meat quality for market preparation.</p>
+                                        <p class="fw-bold text-dark mb-0">Wholesale & Retail available</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <button class="carousel-btn carousel-btn-right" onclick="scrollProducts('hog-container', 1)" aria-label="Scroll Right">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
-                <!-- Product 3 -->
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <img src="https://images.unsplash.com/photo-1536304929831-ee1ca9d4490c?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Brown Rice">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Healthy Brown Rice</h5>
-                            <p class="card-text text-muted">Nutrient-dense, rich in fiber, and great for health-conscious individuals and clean eaters.</p>
-                            <p class="fw-bold text-dark mb-0">₱60.00 / kilo</p>
+
+                <!-- Poultry Feeds Products Tab -->
+                <div class="tab-pane fade" id="poultry-content" role="tabpanel" aria-labelledby="poultry-tab">
+                    <div class="product-carousel-wrapper px-md-3">
+                        <button class="carousel-btn carousel-btn-left" onclick="scrollProducts('poultry-container', -1)" aria-label="Scroll Left">
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+                        <div class="product-scroll-container pb-3 px-2" id="poultry-container">
+                            <!-- Poultry Feed Item 1 -->
+                            <div class="product-card-wrapper">
+                                <div class="card h-100">
+                                    <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Poultry Feeds">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold">Premium Poultry Feeds</h5>
+                                        <p class="card-text text-muted">High-quality formulated feeds designed for optimal growth, health, and egg production.</p>
+                                        <p class="fw-bold text-dark mb-0">Wholesale & Retail available</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Poultry Feed Item 2 -->
+                            <div class="product-card-wrapper">
+                                <div class="card h-100">
+                                    <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Chick Booster Feeds">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold">Chick Booster Feeds</h5>
+                                        <p class="card-text text-muted">Essential nutrient-packed crumbles crafted for newborn chicks to ensure strong immunity and early development.</p>
+                                        <p class="fw-bold text-dark mb-0">Wholesale & Retail available</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <button class="carousel-btn carousel-btn-right" onclick="scrollProducts('poultry-container', 1)" aria-label="Scroll Right">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -213,8 +418,9 @@
                                     <input type="text" id="orderName" class="form-control" placeholder="Enter your name" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">Contact Number</label>
-                                    <input type="tel" id="orderContact" class="form-control" placeholder="e.g., 09123456789" required>
+                                    <label class="form-label">Contact Number *</label>
+                                    <input type="tel" id="orderContact" class="form-control" placeholder="e.g., 09123456789" pattern="\d{11}" maxlength="11" title="Please enter exactly 11 digits" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 11)" required>
+                                    <div class="form-text">Must be 11 digits (numbers only).</div>
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -222,7 +428,7 @@
                                 <textarea id="orderAddress" class="form-control" rows="2" placeholder="Complete delivery address" required></textarea>
                             </div>
 
-                            <!-- Order Table (Dynamic Rows) -->
+                            <!-- Order Table (Dynamic Rows with Product Type) -->
                             <div class="mb-3">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <label class="form-label fw-bold mb-0">Order Items</label>
@@ -232,9 +438,10 @@
                                     <table class="table table-bordered align-middle" id="orderTable">
                                         <thead class="table-light">
                                             <tr>
-                                                <th style="width: 45%;">Product</th>
-                                                <th style="width: 25%;">Kilos</th>
-                                                <th style="width: 25%;">Quantity</th>
+                                                <th style="width: 30%;">Product Type</th>
+                                                <th style="width: 30%;">Product</th>
+                                                <th style="width: 20%;">Kilos</th>
+                                                <th style="width: 15%;">Quantity</th>
                                                 <th style="width: 5%;">Action</th>
                                             </tr>
                                         </thead>
@@ -242,11 +449,16 @@
                                             <!-- Row 1 -->
                                             <tr>
                                                 <td>
+                                                    <select class="form-select form-select-sm type-select" onchange="updateProductOptions(this)" required>
+                                                        <option value="" selected disabled>Select type...</option>
+                                                        <option value="Rice Products">Rice Products</option>
+                                                        <option value="Hog Feeds Products">Hog Feeds Products</option>
+                                                        <option value="Poultry Feeds Products">Poultry Feeds Products</option>
+                                                    </select>
+                                                </td>
+                                                <td>
                                                     <select class="form-select form-select-sm product-select" required>
-                                                        <option value="" selected disabled>Select rice variety...</option>
-                                                        <option value="Premium Jasmine Rice">Premium Jasmine Rice</option>
-                                                        <option value="Special Sinandomeng">Special Sinandomeng</option>
-                                                        <option value="Healthy Brown Rice">Healthy Brown Rice</option>
+                                                        <option value="" selected disabled>Select product first...</option>
                                                     </select>
                                                 </td>
                                                 <td>
@@ -265,11 +477,16 @@
                                             <!-- Row 2 -->
                                             <tr>
                                                 <td>
+                                                    <select class="form-select form-select-sm type-select" onchange="updateProductOptions(this)">
+                                                        <option value="" selected disabled>Select type...</option>
+                                                        <option value="Rice Products">Rice Products</option>
+                                                        <option value="Hog Feeds Products">Hog Feeds Products</option>
+                                                        <option value="Poultry Feeds Products">Poultry Feeds Products</option>
+                                                    </select>
+                                                </td>
+                                                <td>
                                                     <select class="form-select form-select-sm product-select">
-                                                        <option value="" selected disabled>Select rice variety...</option>
-                                                        <option value="Premium Jasmine Rice">Premium Jasmine Rice</option>
-                                                        <option value="Special Sinandomeng">Special Sinandomeng</option>
-                                                        <option value="Healthy Brown Rice">Healthy Brown Rice</option>
+                                                        <option value="" selected disabled>Select product first...</option>
                                                     </select>
                                                 </td>
                                                 <td>
@@ -288,11 +505,16 @@
                                             <!-- Row 3 -->
                                             <tr>
                                                 <td>
+                                                    <select class="form-select form-select-sm type-select" onchange="updateProductOptions(this)">
+                                                        <option value="" selected disabled>Select type...</option>
+                                                        <option value="Rice Products">Rice Products</option>
+                                                        <option value="Hog Feeds Products">Hog Feeds Products</option>
+                                                        <option value="Poultry Feeds Products">Poultry Feeds Products</option>
+                                                    </select>
+                                                </td>
+                                                <td>
                                                     <select class="form-select form-select-sm product-select">
-                                                        <option value="" selected disabled>Select rice variety...</option>
-                                                        <option value="Premium Jasmine Rice">Premium Jasmine Rice</option>
-                                                        <option value="Special Sinandomeng">Special Sinandomeng</option>
-                                                        <option value="Healthy Brown Rice">Healthy Brown Rice</option>
+                                                        <option value="" selected disabled>Select product first...</option>
                                                     </select>
                                                 </td>
                                                 <td>
@@ -333,8 +555,9 @@
                                 <label class="form-label">Special Instructions (Optional)</label>
                                 <textarea id="orderInstructions" class="form-control" rows="2" placeholder="Any delivery notes or preferred drop-off times"></textarea>
                             </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-rice btn-lg w-100 py-3">Submit Order Form</button>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                <button type="submit" class="btn btn-rice btn-lg px-5 py-3 flex-md-grow-1">Submit Order Form</button>
+                                <button type="button" class="btn btn-outline-secondary btn-lg px-4 py-3" onclick="clearOrderForm()">Clear</button>
                             </div>
                         </form>
                     </div>
@@ -354,20 +577,16 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <form>
-                        <div class="row mb-3">
-                            <div class="col-md-6 mb-3 mb-md-0">
-                                <input type="text" class="form-control" placeholder="Your Name" required>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" placeholder="Your Email / Social Handle" required>
-                            </div>
+                    <form id="contactForm" onsubmit="submitContact(event)">
+                        <div class="mb-3">
+                            <input type="text" id="contactName" class="form-control" placeholder="Your Name (Optional)">
                         </div>
                         <div class="mb-3">
-                            <textarea class="form-control" rows="4" placeholder="Your Message / Inquiry" required></textarea>
+                            <textarea id="contactMessage" class="form-control" rows="4" placeholder="Your Message / Inquiry" required></textarea>
                         </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-dark btn-lg px-5">Send Message</button>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <button type="submit" class="btn btn-dark btn-lg px-5 py-3 flex-md-grow-1">Send Message</button>
+                            <button type="button" class="btn btn-outline-secondary btn-lg px-4 py-3" onclick="clearContactForm()">Clear</button>
                         </div>
                     </form>
                 </div>
@@ -386,18 +605,52 @@
     <!-- Bootstrap 5 JS Bundle CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Script to Add/Remove Rows and Handle Email Submission -->
+    <!-- Script to Add/Remove Rows, Dependent Product Options, Clear Forms, Carousel Scroll, and Handle Email Submissions -->
     <script>
+        const productsByType = {
+            "Rice Products": ["Sinandomeng", "Ganador", "Shirataki Rice"],
+            "Hog Feeds Products": ["Hog Starter Feeds", "Hog Finisher Feeds"],
+            "Poultry Feeds Products": ["Premium Poultry Feeds", "Chick Booster Feeds"]
+        };
+
+        function updateProductOptions(typeSelect) {
+            const row = typeSelect.closest('tr');
+            const productSelect = row.querySelector('.product-select');
+            const selectedType = typeSelect.value;
+
+            productSelect.innerHTML = '<option value="" selected disabled>Select product...</option>';
+
+            if (productsByType[selectedType]) {
+                productsByType[selectedType].forEach(product => {
+                    const option = document.createElement('option');
+                    option.value = product;
+                    option.textContent = product;
+                    productSelect.appendChild(option);
+                });
+            }
+        }
+
+        function scrollProducts(containerId, direction) {
+            const container = document.getElementById(containerId);
+            const scrollAmount = 320;
+            container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+
         function addRow() {
             const tbody = document.getElementById('orderTableBody');
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
                 <td>
+                    <select class="form-select form-select-sm type-select" onchange="updateProductOptions(this)">
+                        <option value="" selected disabled>Select type...</option>
+                        <option value="Rice Products">Rice Products</option>
+                        <option value="Hog Feeds Products">Hog Feeds Products</option>
+                        <option value="Poultry Feeds Products">Poultry Feeds Products</option>
+                    </select>
+                </td>
+                <td>
                     <select class="form-select form-select-sm product-select">
-                        <option value="" selected disabled>Select rice variety...</option>
-                        <option value="Premium Jasmine Rice">Premium Jasmine Rice</option>
-                        <option value="Special Sinandomeng">Special Sinandomeng</option>
-                        <option value="Healthy Brown Rice">Healthy Brown Rice</option>
+                        <option value="" selected disabled>Select product first...</option>
                     </select>
                 </td>
                 <td>
@@ -426,10 +679,102 @@
             }
         }
 
-        function generateOrderId() {
+        function clearOrderForm() {
+            document.getElementById('orderForm').reset();
+            const tbody = document.getElementById('orderTableBody');
+            tbody.innerHTML = `
+                <tr>
+                    <td>
+                        <select class="form-select form-select-sm type-select" onchange="updateProductOptions(this)" required>
+                            <option value="" selected disabled>Select type...</option>
+                            <option value="Rice Products">Rice Products</option>
+                            <option value="Hog Feeds Products">Hog Feeds Products</option>
+                            <option value="Poultry Feeds Products">Poultry Feeds Products</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select form-select-sm product-select" required>
+                            <option value="" selected disabled>Select product first...</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select form-select-sm kilos-select" required>
+                            <option value="" selected disabled>Select size...</option>
+                            <option value="Per Kilo">Per Kilo</option>
+                            <option value="5-Kilo Sack">5-Kilo Sack</option>
+                            <option value="10-Kilo Sack">10-Kilo Sack</option>
+                            <option value="25-Kilo Sack">25-Kilo Sack</option>
+                            <option value="50-Kilo Sack">50-Kilo Sack</option>
+                        </select>
+                    </td>
+                    <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty" required></td>
+                    <td class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="form-select form-select-sm type-select" onchange="updateProductOptions(this)">
+                            <option value="" selected disabled>Select type...</option>
+                            <option value="Rice Products">Rice Products</option>
+                            <option value="Hog Feeds Products">Hog Feeds Products</option>
+                            <option value="Poultry Feeds Products">Poultry Feeds Products</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select form-select-sm product-select">
+                            <option value="" selected disabled>Select product first...</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select form-select-sm kilos-select">
+                            <option value="" selected disabled>Select size...</option>
+                            <option value="Per Kilo">Per Kilo</option>
+                            <option value="5-Kilo Sack">5-Kilo Sack</option>
+                            <option value="10-Kilo Sack">10-Kilo Sack</option>
+                            <option value="25-Kilo Sack">25-Kilo Sack</option>
+                            <option value="50-Kilo Sack">50-Kilo Sack</option>
+                        </select>
+                    </td>
+                    <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
+                    <td class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="form-select form-select-sm type-select" onchange="updateProductOptions(this)">
+                            <option value="" selected disabled>Select type...</option>
+                            <option value="Rice Products">Rice Products</option>
+                            <option value="Hog Feeds Products">Hog Feeds Products</option>
+                            <option value="Poultry Feeds Products">Poultry Feeds Products</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select form-select-sm product-select">
+                            <option value="" selected disabled>Select product first...</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select form-select-sm kilos-select">
+                            <option value="" selected disabled>Select size...</option>
+                            <option value="Per Kilo">Per Kilo</option>
+                            <option value="5-Kilo Sack">5-Kilo Sack</option>
+                            <option value="10-Kilo Sack">10-Kilo Sack</option>
+                            <option value="25-Kilo Sack">25-Kilo Sack</option>
+                            <option value="50-Kilo Sack">50-Kilo Sack</option>
+                        </select>
+                    </td>
+                    <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
+                    <td class="text-center"><button type="button" class="btn btn-sm text-danger" onclick="removeRow(this)" title="Remove Item">&times;</button></td>
+                </tr>
+            `;
+        }
+
+        function clearContactForm() {
+            document.getElementById('contactForm').reset();
+        }
+
+        function generateRandomId(length) {
             const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             let result = '';
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < length; i++) {
                 result += chars.charAt(Math.floor(Math.random() * chars.length));
             }
             return result;
@@ -443,17 +788,18 @@
             const address = document.getElementById('orderAddress').value;
             const payment = document.getElementById('orderPayment').value;
             const instructions = document.getElementById('orderInstructions').value;
-            const orderId = generateOrderId();
+            const orderId = generateRandomId(15);
 
             let itemsList = "";
             const rows = document.querySelectorAll('#orderTableBody tr');
             rows.forEach((row, index) => {
+                const type = row.querySelector('.type-select').value;
                 const product = row.querySelector('.product-select').value;
                 const kilos = row.querySelector('.kilos-select').value;
                 const quantity = row.querySelector('.qty-input').value;
 
                 if (product) {
-                    itemsList += `Item ${index + 1}:\n- Product: ${product}\n- Kilos/Size: ${kilos || 'N/A'}\n- Quantity: ${quantity || 'N/A'}\n\n`;
+                    itemsList += `Item ${index + 1}:\n- Type: ${type}\n- Product: ${product}\n- Kilos/Size: ${kilos || 'N/A'}\n- Quantity: ${quantity || 'N/A'}\n\n`;
                 }
             });
 
@@ -467,7 +813,26 @@
                               `Special Instructions: ${instructions || 'None'}`;
 
             const recipient = "janryan.hernandez@gmail.com";
-            const subject = `OrderID#: ${orderId}`;
+            const subject = `RCH OrderID#: ${orderId}`;
+
+            const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            window.location.href = mailtoLink;
+        }
+
+        function submitContact(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('contactName').value || 'Anonymous';
+            const message = document.getElementById('contactMessage').value;
+            const ifsId = generateRandomId(14);
+
+            const emailBody = `--- NEW INQUIRY / MESSAGE ---\n\n` +
+                              `Reference ID: ${ifsId}\n` +
+                              `Name: ${name}\n\n` +
+                              `Message:\n${message}`;
+
+            const recipient = "janryan.hernandez@gmail.com";
+            const subject = `RCH IFS#: ${ifsId}`;
 
             const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
             window.location.href = mailtoLink;
