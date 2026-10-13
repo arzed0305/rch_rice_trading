@@ -380,12 +380,12 @@
                                                 </td>
                                                 <td>
                                                     <select class="form-select form-select-sm product-select" onchange="updateKilosOptions(this)" required>
-                                                        <option value="" selected disabled>Select product first...</option>
+                                                        <option value="" selected disabled>Select type first...</option>
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select class="form-select form-select-sm kilos-select" required>
-                                                        <option value="" selected disabled>Select size first...</option>
+                                                        <option value="" selected disabled>Select product first...</option>
                                                     </select>
                                                 </td>
                                                 <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty" required></td>
@@ -403,12 +403,12 @@
                                                 </td>
                                                 <td>
                                                     <select class="form-select form-select-sm product-select" onchange="updateKilosOptions(this)">
-                                                        <option value="" selected disabled>Select product first...</option>
+                                                        <option value="" selected disabled>Select type first...</option>
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select class="form-select form-select-sm kilos-select">
-                                                        <option value="" selected disabled>Select size first...</option>
+                                                        <option value="" selected disabled>Select product first...</option>
                                                     </select>
                                                 </td>
                                                 <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
@@ -426,12 +426,12 @@
                                                 </td>
                                                 <td>
                                                     <select class="form-select form-select-sm product-select" onchange="updateKilosOptions(this)">
-                                                        <option value="" selected disabled>Select product first...</option>
+                                                        <option value="" selected disabled>Select type first...</option>
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select class="form-select form-select-sm kilos-select">
-                                                        <option value="" selected disabled>Select size first...</option>
+                                                        <option value="" selected disabled>Select product first...</option>
                                                     </select>
                                                 </td>
                                                 <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
@@ -691,8 +691,8 @@
             const kilosSelect = row.querySelector('.kilos-select');
             const selectedType = typeSelect.value;
 
-            productSelect.innerHTML = '<option value="" selected disabled>Select product...</option>';
-            kilosSelect.innerHTML = '<option value="" selected disabled>Select size first...</option>';
+            productSelect.innerHTML = '<option value="" selected disabled>Select type first...</option>';
+            kilosSelect.innerHTML = '<option value="" selected disabled>Select product first...</option>';
 
             if (productCatalog[selectedType]) {
                 productCatalog[selectedType].forEach(product => {
@@ -711,7 +711,7 @@
             const selectedType = typeSelect.value;
             const selectedProductName = productSelect.value;
 
-            kilosSelect.innerHTML = '<option value="" selected disabled>Select size...</option>';
+            kilosSelect.innerHTML = '<option value="" selected disabled>Select product first...</option>';
 
             if (productCatalog[selectedType]) {
                 const foundProduct = productCatalog[selectedType].find(p => p.name === selectedProductName);
@@ -746,12 +746,12 @@
                 </td>
                 <td>
                     <select class="form-select form-select-sm product-select" onchange="updateKilosOptions(this)">
-                        <option value="" selected disabled>Select product first...</option>
+                        <option value="" selected disabled>Select type first...</option>
                     </select>
                 </td>
                 <td>
                     <select class="form-select form-select-sm kilos-select">
-                        <option value="" selected disabled>Select size first...</option>
+                        <option value="" selected disabled>Select product first...</option>
                     </select>
                 </td>
                 <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
@@ -785,12 +785,12 @@
                     </td>
                     <td>
                         <select class="form-select form-select-sm product-select" onchange="updateKilosOptions(this)" required>
-                            <option value="" selected disabled>Select product first...</option>
+                            <option value="" selected disabled>Select type first...</option>
                         </select>
                     </td>
                     <td>
                         <select class="form-select form-select-sm kilos-select" required>
-                            <option value="" selected disabled>Select size first...</option>
+                            <option value="" selected disabled>Select product first...</option>
                         </select>
                     </td>
                     <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty" required></td>
@@ -807,12 +807,12 @@
                     </td>
                     <td>
                         <select class="form-select form-select-sm product-select" onchange="updateKilosOptions(this)">
-                            <option value="" selected disabled>Select product first...</option>
+                            <option value="" selected disabled>Select type first...</option>
                         </select>
                     </td>
                     <td>
                         <select class="form-select form-select-sm kilos-select">
-                            <option value="" selected disabled>Select size first...</option>
+                            <option value="" selected disabled>Select product first...</option>
                         </select>
                     </td>
                     <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
@@ -829,12 +829,12 @@
                     </td>
                     <td>
                         <select class="form-select form-select-sm product-select" onchange="updateKilosOptions(this)">
-                            <option value="" selected disabled>Select product first...</option>
+                            <option value="" selected disabled>Select type first...</option>
                         </select>
                     </td>
                     <td>
                         <select class="form-select form-select-sm kilos-select">
-                            <option value="" selected disabled>Select size first...</option>
+                            <option value="" selected disabled>Select product first...</option>
                         </select>
                     </td>
                     <td><input type="number" min="1" class="form-control form-control-sm qty-input" placeholder="Qty"></td>
