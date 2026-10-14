@@ -319,7 +319,7 @@
                             <h2 class="fw-bold">Quick Order Form</h2>
                             <p class="text-muted">Fill out the details below to place your order with us.</p>
                         </div>
-                        <form id="orderForm" onsubmit="previewOrder(event)">
+                        <form id="orderForm" onsubmit="checkDuplicateOrder(event)">
                             <div class="row mb-3">
                                 <div class="col-md-6 mb-3 mb-md-0">
                                     <label class="form-label">Customer Name *</label>
@@ -472,8 +472,48 @@
                     <div id="modalOrderSummaryContent" class="bg-light p-3 rounded border font-monospace small" style="white-space: pre-line;"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Edit Order</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" onclick="handleEditOrder()">Edit Order</button>
                     <button type="button" class="btn btn-rice px-4" onclick="confirmAndSubmitOrder()">Confirm & Send Email</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Duplicate Order Warning Modal -->
+    <div class="modal fade" id="duplicateOrderModal" tabindex="-1" aria-labelledby="duplicateOrderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-dark">
+                    <h5 class="modal-title fw-bold" id="duplicateOrderModalLabel"><i class="bi bi-exclamation-triangle-fill me-2"></i> Reminder: Existing Order</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-2">An order with reference ID <strong id="duplicateOrderIdText"></strong> has already been submitted.</p>
+                    <p class="text-muted small mb-0">It looks like this order is the same. Would you like to resubmit this order, or would you prefer to clear the form and start a new one?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" onclick="handleDuplicateOrderNo()">No, Clear Form</button>
+                    <button type="button" class="btn btn-rice px-4" onclick="handleDuplicateOrderYes()">Yes, Resubmit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Duplicate Contact Inquiry Warning Modal -->
+    <div class="modal fade" id="duplicateContactModal" tabindex="-1" aria-labelledby="duplicateContactModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-dark">
+                    <h5 class="modal-title fw-bold" id="duplicateContactModalLabel"><i class="bi bi-exclamation-triangle-fill me-2"></i> Reminder: Existing Message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-2">A message with reference ID <strong id="duplicateContactIdText"></strong> has already been submitted.</p>
+                    <p class="text-muted small mb-0">It looks like this message is the same. Would you like to resubmit this message, or would you prefer to clear the form and start a new one?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" onclick="handleDuplicateContactNo()">No, Clear Form</button>
+                    <button type="button" class="btn btn-dark px-4" onclick="handleDuplicateContactYes()">Yes, Resubmit</button>
                 </div>
             </div>
         </div>
@@ -490,7 +530,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <form id="contactForm" onsubmit="submitContact(event)">
+                    <form id="contactForm" onsubmit="checkDuplicateContact(event)">
                         <div class="mb-3">
                             <input type="text" id="contactName" class="form-control" placeholder="Your Name (Optional)">
                         </div>
@@ -778,6 +818,9 @@
 
         function clearOrderForm() {
             document.getElementById('orderForm').reset();
+            persistentOrderId = null;
+            hasSubmittedOrder = false;
+            isEditingOrder = false;
             const tbody = document.getElementById('orderTableBody');
             tbody.innerHTML = `
                 <tr>
@@ -851,6 +894,9 @@
 
         function clearContactForm() {
             document.getElementById('contactForm').reset();
+            persistentIfsId = null;
+            hasSubmittedContact = false;
+            isEditingContact = false;
         }
 
         function generateRandomId(length) {
@@ -864,16 +910,66 @@
 
         let pendingOrderData = null;
         let activeOrderModal = null;
+        let duplicateOrderModalInstance = null;
+        let persistentOrderId = null;
+        let hasSubmittedOrder = false;
+        let isEditingOrder = false;
 
-        function previewOrder(event) {
+        let persistentIfsId = null;
+        let hasSubmittedContact = false;
+        let isEditingContact = false;
+
+        /* ==========================================================
+           ORDER FORM DUPLICATE LOGIC
+           ========================================================== */
+        function checkDuplicateOrder(event) {
             event.preventDefault();
+
+            if (isEditingOrder) {
+                isEditingOrder = false;
+                proceedToOrderSummary();
+                return;
+            }
+
+            if (hasSubmittedOrder && persistentOrderId) {
+                document.getElementById('duplicateOrderIdText').textContent = persistentOrderId;
+                duplicateOrderModalInstance = new bootstrap.Modal(document.getElementById('duplicateOrderModal'));
+                duplicateOrderModalInstance.show();
+                return;
+            }
+
+            if (!persistentOrderId) {
+                persistentOrderId = generateRandomId(15);
+            }
+            proceedToOrderSummary();
+        }
+
+        function handleDuplicateOrderYes() {
+            if (duplicateOrderModalInstance) {
+                duplicateOrderModalInstance.hide();
+            }
+            proceedToOrderSummary();
+        }
+
+        function handleDuplicateOrderNo() {
+            if (duplicateOrderModalInstance) {
+                duplicateOrderModalInstance.hide();
+            }
+            clearOrderForm();
+        }
+
+        function handleEditOrder() {
+            isEditingOrder = true;
+        }
+
+        function proceedToOrderSummary() {
+            hasSubmittedOrder = true;
 
             const name = document.getElementById('orderName').value;
             const contact = document.getElementById('orderContact').value;
             const address = document.getElementById('orderAddress').value;
             const payment = document.getElementById('orderPayment').value;
             const instructions = document.getElementById('orderInstructions').value;
-            const orderId = generateRandomId(15);
 
             let itemsList = "";
             let modalItemsText = "";
@@ -891,7 +987,7 @@
             });
 
             const emailBody = `--- NEW ORDER DETAILS ---\n\n` +
-                              `Order ID: ${orderId}\n` +
+                              `Order ID: ${persistentOrderId}\n` +
                               `Customer Name: ${name}\n` +
                               `Contact Number: ${contact}\n` +
                               `Delivery Address: ${address}\n` +
@@ -899,13 +995,13 @@
                               `Order Items:\n${itemsList}` +
                               `Special Instructions: ${instructions || 'None'}`;
 
-            const recipient = "janryan.hernandez@gmail.com";
-            const subject = `RCH OrderID#: ${orderId}`;
+            const recipient = "rch.rice.trading@gmail.com";
+            const subject = `RCH OrderID#: ${persistentOrderId}`;
             const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
 
             pendingOrderData = mailtoLink;
 
-            const summaryHtml = `Order ID: ${orderId}
+            const summaryHtml = `Order ID: ${persistentOrderId}
 Customer Name: ${name}
 Contact Number: ${contact}
 Delivery Address: ${address}
@@ -930,20 +1026,64 @@ Special Instructions: ${instructions || 'None'}`;
             }
         }
 
-        function submitContact(event) {
+        /* ==========================================================
+           GET IN TOUCH FORM DUPLICATE LOGIC
+           ========================================================== */
+        let duplicateContactModalInstance = null;
+
+        function checkDuplicateContact(event) {
             event.preventDefault();
+
+            if (isEditingContact) {
+                isEditingContact = false;
+                proceedToContactSubmission();
+                return;
+            }
+
+            if (hasSubmittedContact && persistentIfsId) {
+                document.getElementById('duplicateContactIdText').textContent = persistentIfsId;
+                duplicateContactModalInstance = new bootstrap.Modal(document.getElementById('duplicateContactModal'));
+                duplicateContactModalInstance.show();
+                return;
+            }
+
+            if (!persistentIfsId) {
+                persistentIfsId = generateRandomId(14);
+            }
+            proceedToContactSubmission();
+        }
+
+        function handleDuplicateContactYes() {
+            if (duplicateContactModalInstance) {
+                duplicateContactModalInstance.hide();
+            }
+            proceedToContactSubmission();
+        }
+
+        function handleDuplicateContactNo() {
+            if (duplicateContactModalInstance) {
+                duplicateContactModalInstance.hide();
+            }
+            clearContactForm();
+        }
+
+        function handleEditContact() {
+            isEditingContact = true;
+        }
+
+        function proceedToContactSubmission() {
+            hasSubmittedContact = true;
 
             const name = document.getElementById('contactName').value || 'Anonymous';
             const message = document.getElementById('contactMessage').value;
-            const ifsId = generateRandomId(14);
 
             const emailBody = `--- NEW INQUIRY / MESSAGE ---\n\n` +
-                              `Reference ID: ${ifsId}\n` +
+                              `Reference ID: ${persistentIfsId}\n` +
                               `Name: ${name}\n\n` +
                               `Message:\n${message}`;
 
-            const recipient = "janryan.hernandez@gmail.com";
-            const subject = `RCH IFS#: ${ifsId}`;
+            const recipient = "rch.rice.trading@gmail.com";
+            const subject = `RCH IFS#: ${persistentIfsId}`;
 
             const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
             window.location.href = mailtoLink;
